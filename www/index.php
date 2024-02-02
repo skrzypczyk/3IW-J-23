@@ -196,12 +196,19 @@
 
 
 
-    function cleanAndCheckFirstname .....
+    function cleanAndCheckFirstname(&$firstname): bool
+    {
+        $firstname = ucwords(strtolower(trim($firstname)));
+        return strlen($firstname)>=2;
+    }
 
 
-
-    $firstname = "Yves";
-    cleanAndCheckFirstname($firstname);
+    $firstname = "jEAn yvEs";
+    if(cleanAndCheckFirstname($firstname) == true){
+        echo "Insertion en base de données de ".$firstname;
+    }else{
+        echo "Le prénom ".$firstname." est incorrect";
+    }
 
     ?>
 
