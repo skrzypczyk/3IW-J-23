@@ -9,3 +9,4 @@
 /logout:
   Controller: "Security"
   Action: "logout"
+
