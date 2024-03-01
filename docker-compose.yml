@@ -10,6 +10,8 @@ services:
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
 
+
+
   mariadb:
     image: mariadb
     restart: always
@@ -22,6 +24,9 @@ services:
       - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
+
+
+
 
   phpmyadmin:
     image: phpmyadmin

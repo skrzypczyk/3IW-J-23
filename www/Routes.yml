@@ -1,0 +1,11 @@
+/login:
+  Controller: "Security"
+  Action: "login"
+
+/register:
+  Controller: "Security"
+  Action: "register"
+
+/logout:
+  Controller: "Security"
+  Action: "logout"
