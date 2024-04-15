@@ -1,4 +1,5 @@
 <?php
+namespace App\Core;
 class View
 {
     private $view;

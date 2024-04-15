@@ -1,4 +1,5 @@
 <?php
+namespace App;
 
 //Notre Autoloader
 spl_autoload_register("myAutoloader");
