@@ -1,10 +1,13 @@
 <?php
+
 namespace App;
 
 //Notre Autoloader
-spl_autoload_register("myAutoloader");
+spl_autoload_register("App\myAutoloader");
 
 function myAutoloader($class){
+    $classExploded = explode("\\", $class);
+    $class = end($classExploded);
     //echo "L'autoloader se lance pour ".$class;
     if(file_exists("../Core/".$class.".php")){
         include "../Core/".$class.".php";
@@ -62,8 +65,10 @@ if(!file_exists("../Controllers/".$controller.".php")){
 }
 include "../Controllers/".$controller.".php";
 
+$controller = "App\\Controller\\".$controller;
+
 if( !class_exists($controller) ){
-    die("Le class controller ".$controller." n'existe pas");
+    die("La class controller ".$controller." n'existe pas");
 }
 $objetController = new $controller();
 
@@ -71,9 +76,6 @@ if( !method_exists($controller, $action) ){
     die("Le methode ".$action." n'existe pas dans le controller ".$controller);
 }
 $objetController->$action();
-
-
-
 
 
 
