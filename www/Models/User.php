@@ -7,11 +7,11 @@ class User extends SQL
 
 
     private int $id;
-    private string $firstname;
-    private string $lastname;
-    private string $email;
-    private string $password;
-    private int $status = 0;
+    protected string $firstname;
+    protected string $lastname;
+    protected string $email;
+    protected string $password;
+    protected int $status = 0;
 
 
 

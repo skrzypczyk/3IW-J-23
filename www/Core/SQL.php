@@ -7,6 +7,7 @@ use PDO;
 class SQL
 {
     private $pdo;
+    private $table;
 
     public function __construct()
     {
@@ -15,13 +16,23 @@ class SQL
         }catch (\Exception $e){
             die("Erreur SQL : ".$e->getMessage());
         }
+
+        $classChild = get_called_class();
+        $this->table = "esgi_".strtolower(str_replace("App\\Models\\","",$classChild));
     }
 
     public function save()
     {
         //Vous ne devez ecrire en dure le nom de la table ou des colonnes à inserer en bdd
-        //echo get_called_class();
-        $sql = ".....";
+        $columnsAll = get_object_vars($this);
+        $columnsToDelete = get_class_vars(get_class());
+        $columns = array_diff_key($columnsAll, $columnsToDelete);
+
+        $sql = "INSERT INTO ".$this->table. " (". implode(', ', array_keys($columns) ) .")  
+        VALUES (:". implode(',:', array_keys($columns) ) .")";
+
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($columns);
 
     }
 
