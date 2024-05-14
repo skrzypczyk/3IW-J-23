@@ -6,7 +6,7 @@ class User extends SQL
 {
 
 
-    private int $id;
+    private ?int $id = null;
     protected string $firstname;
     protected string $lastname;
     protected string $email;
@@ -18,7 +18,7 @@ class User extends SQL
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

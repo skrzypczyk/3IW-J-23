@@ -28,9 +28,18 @@ class SQL
         $columnsToDelete = get_class_vars(get_class());
         $columns = array_diff_key($columnsAll, $columnsToDelete);
 
-        $sql = "INSERT INTO ".$this->table. " (". implode(', ', array_keys($columns) ) .")  
+        if( empty($this->getId()) ) {
+            $sql = "INSERT INTO ".$this->table. " (". implode(', ', array_keys($columns) ) .")  
         VALUES (:". implode(',:', array_keys($columns) ) .")";
+        }else{
 
+            //UPDATE esgi_user SET firstname=:firstname, lastname=:lastname WHERE id=1
+            foreach ( $columns as $column=>$value){
+                $sqlUpdate[] = $column."=:".$column;
+            }
+
+            $sql = "UPDATE ".$this->table. " SET ".implode(',', $sqlUpdate). " WHERE id=".$this->getId();
+        }
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($columns);
 

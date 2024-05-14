@@ -2,6 +2,7 @@
 namespace App\Controller;
 use App\Core\Security as Auth;
 use App\Core\View;
+use App\Models\Page;
 use App\Models\User;
 
 class Security{
@@ -23,18 +24,23 @@ class Security{
     public function register(): void
     {
 
+        $myPage = new Page();
+        $myPage->setId(1);
+        $myPage->setTitle("Ma super page seconde version");
+        $myPage->setContent("Voici le contenu de ma page");
+        $myPage->save();
+
+
         if(!empty($_POST))
         {
-
-
             $user = new User();
+            $user->setId(1);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);
             $user->setPassword($_POST["password"]);
             //Injecter le user en bdd
             $user->save();
-
         }
 
         $view = new View("Security/register");
