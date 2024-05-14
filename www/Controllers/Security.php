@@ -1,6 +1,9 @@
 <?php
 namespace App\Controller;
 use App\Core\Security as Auth;
+use App\Core\View;
+use App\Models\User;
+
 class Security{
 
 
@@ -19,7 +22,23 @@ class Security{
     }
     public function register(): void
     {
-        echo "S'inscrire";
+
+        if(!empty($_POST))
+        {
+
+
+            $user = new User();
+            $user->setFirstname($_POST["firstname"]);
+            $user->setLastname($_POST["lastname"]);
+            $user->setEmail($_POST["email"]);
+            $user->setPassword($_POST["password"]);
+            //Injecter le user en bdd
+            $user->save();
+
+        }
+
+        $view = new View("Security/register");
+        $view->render();
     }
     public function logout(): void
     {

@@ -12,6 +12,9 @@ function myAutoloader($class){
     if(file_exists("../Core/".$class.".php")){
         include "../Core/".$class.".php";
     }
+    if(file_exists("../Models/".$class.".php")){
+        include "../Models/".$class.".php";
+    }
 }
 
 
