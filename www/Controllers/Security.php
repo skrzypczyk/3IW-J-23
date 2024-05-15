@@ -22,6 +22,10 @@ class Security{
         */
 
         $form = new Form("Login");
+        if( $form->isSubmitted() && $form->isValid() )
+        {
+
+        }
         $view = new View("Security/login");
         $view->assign("form", $form->build());
         $view->render();
@@ -33,12 +37,9 @@ class Security{
 
         $form = new Form("Register");
 
-
-
-        if(!empty($_POST))
+        if( $form->isSubmitted() && $form->isValid() )
         {
             $user = new User();
-            $user->setId(1);
             $user->setFirstname($_POST["firstname"]);
             $user->setLastname($_POST["lastname"]);
             $user->setEmail($_POST["email"]);

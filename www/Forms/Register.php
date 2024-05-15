@@ -40,7 +40,7 @@ class Register
                     "type"=>"password",
                     "placeholder"=>"Votre mot de passe",
                     "required"=>true,
-                    "error"=>"Votre mot de passe doit faire au minimum 8 caractères avec des lettres et des chiffres"
+                    "error"=>"Votre mot de passe doit faire au minimum 8 caractères avec des lettres minscules, majuscules et des chiffres"
                 ],
                 "passwordConfirm"=>[
                     "type"=>"password",
