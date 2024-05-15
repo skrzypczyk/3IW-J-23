@@ -4,6 +4,7 @@ class View
 {
     private $view;
     private $template;
+    private $data = [];
 
     public function __construct(String $view, String $template="Front")
     {
@@ -29,8 +30,14 @@ class View
         $this->template = $template;
     }
 
+
+    public function assign($key, $value): void{
+        $this->data[$key] = $value;
+    }
+
     public function render(): void
     {
+        extract($this->data);
         //echo "Le template c'est ".$this->template." et la vue ".$this->view;
         include "../Views/Templates/".$this->template.".php";
     }
